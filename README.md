@@ -81,6 +81,8 @@ Discover inter-relationships between items.
 Whether it’s a social network, payment networks, or road network you’ll find that everything is an interconnected graph of relationships. And when we want to ask questions about the real world, many questions are about the relationships rather than about the individual data elements.
 
 
+   
+
 
 
 1 . ER DIAGRAM 
