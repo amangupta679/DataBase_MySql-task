@@ -1,0 +1,111 @@
+use drop_table;
+create table employee1(FirstName text ,
+LastName text ,
+BirthDate date ,
+Gender char ,
+PhoneNumber bigint ,
+email varchar(20) ,
+address text ,
+department varchar ,
+position varchar , 
+hiredate date , 
+salary decimal ,  
+hourlyRate time, 
+isfulltime bit    ,
+taxrate float   )
+
+-- create date_types with entering all the data types with relavant examples 
+create table Data_types(
+age integer , 
+name varchar(50) , 
+gender char(1) , 
+price float , 
+birth_date date , 
+event_time time , 
+timestamp datetime , 
+profile_pic IMAGE ,
+tax_rate decimal  , 
+paragraph text , 
+population bigint , 
+bangbalance smallint , 
+temperature real  , 
+user_data xml , 
+location geometry , 
+balance money , 
+);
+
+
+
+create table orders(oder_id integer , oder_date date , customer_id integer)
+create table customers(customer_id integer , customer_phoe varchar(20) , customer_email text)
+create table items(items_id integer , item_name varchar(100) , item_price numeric)
+create table order_items(oder_id integer , item_id integer)
+select * from sys.tables;
+
+create table property_dealer(name varchar , 
+location geometry ,
+buget  money, 
+property_kind text ) 
+
+create table product_information(
+s_no int identity(1,1), 
+product_information text ,
+stock_level bigint ,
+suppliers varchar ,
+oders bigint)
+
+
+create table suppliers(
+s_no int identity(1,1), 
+licence_information text ,
+suppliers_name varchar ,
+suppliers_rating int)
+
+
+create table stock_level(
+s_no int identity(1,1), 
+stock_information text ,
+stock_level bigint ,
+stock_expiry datetime ,
+stock_clearance_date date)
+
+create table orderss(
+s_no int identity(1,1), 
+oders_information text ,
+oders_size bigint ,
+oders_expiry varchar ,
+oders_clearance_date date)
+
+
+truncate table RegistrationTable;
+
+
+create table travell_guide(s_no int identity(1,1) , )
+
+
+-- 1.Read the data from table 
+select * from RegistrationTable
+
+-- use primary key for deleteing any data from the table 
+-- comment  , id is very important in creating the TABLE	
+
+-- creating a signup table 
+use drop_table
+create table Signup(s_no int identity(1,1) , First_Name varchar ,
+Last_Name varchar , 
+email_id text ,
+phone_number bigint  ,
+password varchar)
+
+-- insering data into the table
+INSERT INTO Signup VALUES('Aman' , 'Gupta' , 'guptaamaan679@gmai.com' , 703109801961 , 'aman12686345' )
+INSERT INTO Signup VALUES('mitesh' , 'gautam' , 'guptaagamaan679@gmai.com' , 70317001961 , 'ama787n12345' )
+INSERT INTO Signup VALUES('Ahbhbman' , 'Gbjkupta' , 'guptaartthamaan679@gmai.com' , 70310701961 , 'ama879n12345' )
+INSERT INTO Signup VALUES('Ambkban' , 'Gbjkkjupta' , 'guptaajjjbnoimaan679@gmai.com' , 70310701961 , 'ama798n12345' )
+INSERT INTO Signup VALUES('Ambkan' , 'Gujbpta' , 'guptaamiijioaan679@gmai.com' , 70310701961 , 'ama789n12345' )
+INSERT INTO Signup VALUES('Ambjkban' , 'bjkGupta' , 'guptaamijoijaan679@gmai.com' , 703100001961 , 'am8789an12345' )
+
+select * from Signup
+
+
+-- id ,  s_no  , date of creation , 
