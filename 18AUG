@@ -1,0 +1,59 @@
+create database aug18
+use aug18
+/*create table employee  */
+create table employee(
+id int primary key NOT NULL ,
+first_name varchar(10),
+last_name varchar(10),
+DOJ date , 
+position varchar(10),
+email varchar(20) , 
+phone_number bigint 
+)
+
+DROP TABLE employee
+
+/*insert into thetable  */
+insert into employee(first_name, last_name , DOJ , position,email , phone_number)
+values('JHETALAL' , 'CHAMPAK' ,'2023-08-15' , 'TSE' , 'XYZ@GMAIL.COM' , 70333344223 ),
+ ('CHAMPAK' , 'JAINTAI' ,'15-02-2023' , 'TSE' , 'ABC@GMAIL.COM' , 70333344223 ),
+ ('DAYA' , 'TAPPUKAEPAPA' ,'15-03-2023' , 'TSE' , 'DEF@GMAIL.COM' , 70333344223 ),
+ ('TIPENDRA' , 'JHETALAL' ,'15-04-2023' , 'TSE' , 'GHI@GMAIL.COM' , 70333344223 ),
+ ('SUNDAR' , 'SALA' ,'15-05-2023' , 'TSE' , 'SDDF@GMAIL.COM' , 70333344223 )
+
+ /* create table  employee_salary */
+
+ CREATE TABLE EMPLOYEE_SALARY(
+ S_NO INT IDENTITY NOT NULL, 
+ EMP_ID INT PRIMARY KEY NOT NULL,
+ CREDIT_DATE  DATETIME ,
+ PAYMENT_OF_MONTH  VARCHAR(10) ,
+ Adhar_no bigint unique 
+ )
+ INSERT INTO EMPLOYEE_SALARY( EMP_ID,CREDIT_DATE,PAYMENT_OF_MONTH,Adhar_no)
+ VALUES(5569,'12-03-2023 12-23-33', 'january',324233255 ),
+ (5569,'12-03-2023 12-23-33', 'january',324233255 ),
+ (5569,'12-03-2023 12-23-33', 'january',324233255 ),
+ (5569,'12-03-2023 12-23-33', 'january',324233255 )
+
+ /* create table bank account */
+
+ CREATE TABLE BANK_ACCOUNT(
+ emp_id int  primary key, 
+ BANK_NAME TEXT , 
+ account_no bigint UNIQUE , 
+ account_type  varchar(20) 
+ )
+ insert into BANK_ACCOUNT('AXIS' , 2352353455325 , 'CURRENTACCOUNT'), 
+ ('ICICI' , 23523534635325 , 'CURRENTACCOUNT') ,
+ ('SBIN' , 2352355735325 , 'CURRENTACCOUNT')
+
+ /*
+ SELECT * FROM table1 
+  INNER JOIN table2
+  ON table1.id = table2.id;
+
+  */
+  select * from employee
+  inner join BANK_ACCOUNT
+  on employee.S_NO , 
