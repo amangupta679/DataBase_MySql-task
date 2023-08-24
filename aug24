@@ -1,0 +1,1108 @@
+create database aug24 
+use aug24
+
+/* create table orders and customers table */
+
+-- Task to join two tables 
+
+
+create table orders(orderid int primary key , 
+customer_id int , 
+orderDate date 
+)
+insert into orders values
+(1, 123 , '2023-12-10'),
+(2, 234 , '2023-10-16'), 
+(3, 345 , '2023-11-10')
+
+
+create table customers (
+customer_id int primary key  , 
+customer_name varchar(40) , 
+contact_name text , 
+countary text
+)
+
+insert into customers(customer_id ,customer_name ,contact_name ,countary   )
+values ( 1, 'modi ji' , 'amit saha' , 'bharat') ,
+(2 , 'rahul gandhi ' , 'dont no' , 'india'),
+(3 , 'yogi' , 'me' , 'bharat')
+
+SELECT Orders.OrderID, Customers.customer_name, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers ON Orders.customer_id=Customers.customer_id;
+
+select * from orders , customers
+
+
+/* -------- BOOK STORE DATAMANAGEMENT SYSTEM  -------*/
+
+/* create a table authors */
+
+
+create table authors(author_id int primary key ,
+firstname varchar(30) ,
+lastname varchar(30) ,
+book_id int 
+)
+
+/* create a table book */
+
+
+create table book (
+book_id int primary key , 
+author_id int  , 
+publisher_id int , 
+title text ,
+genre text , 
+type text , 
+publish_year date , 
+price money  , 
+condition text
+Foreign key (book_id) references  authors(author_id)
+
+
+)
+
+
+/* create a table  PUBLISHERS  */
+
+
+CREATE TABLE PUBLISHERS(
+PUBLISHER_ID INT PRIMARY KEY,
+COUNTARY TEXT , 
+BOOK_ID INT , 
+ FOREIGN KEY (publisher_id) REFERENCES book(book_id)
+)
+
+insert into PUBLISHERS(PUBLISHER_ID , COUNTARY , BOOK_ID )
+values(1,'INDIA' , 1242 ),
+(2,'INDIA' , 1242 ),
+(3,'INDIA' , 1242 ),
+(4,'INDIA' , 1242 )
+
+/*  create a table inventory */
+
+
+create table inventory (
+book_id int primary key,
+stockLevelUsed int , 
+stockLevelNew int
+FOREIGN KEY (book_id) REFERENCES PUBLISHERS(PUBLISHER_ID)
+)
+
+INSERT INTO INVENTORY VALUES (1 , 234 , 2353) , 
+(2, 234 , 2353),
+(3 , 234 , 2353),
+(4 , 234 , 2353)
+
+
+
+/* CRATE A TABLE CUSTOMERS */
+
+create table customerss (
+customer_id int primary key, 
+firstName text , 
+lastName text , 
+streetName varchar(50),
+postalCode int  , 
+province  varchar(50) , 
+countary text  , 
+phonenumber bigint 
+)
+
+insert into customerss values( 1, 'Aman' ,'Gupta' , 'D colony' , '5800001' ,'ffbfh'  , 'INDIA' , 7031001961 ),
+( 2, 'RAHUL' ,'JHA' , 'E colony' , '23462' ,'ffbfh'  , 'INDIA' , 233462456245 ),
+( 3, 'Aman' ,'Gupta' , 'F colony' , '24356' ,'ADDFB'  , 'INDIA' , 2457357 ),
+( 4, 'Aman' ,'Gupta' , 'G colony' , '1346' ,'SFDB'  , 'INDIA' , 247457 ),
+( 5, 'Aman' ,'Gupta' , 'H colony' , '31463' ,'SFGN'  , 'INDIA' , 257245747 ),
+( 6, 'Aman' ,'Gupta' , 'I colony' , '23462' ,'FBA'  , 'INDIA' , 24572547 )
+
+
+/* CRREATE THE TABLE ORDERSS*/
+
+create table OrderItem(
+orderId int primary key , 
+customersId int  , 
+orderDate date , 
+subtotal int , 
+shipping text , 
+total int ,
+Foreign key (orderId) references  customerss(customer_id)
+)
+
+
+insert into OrderItem(orderId , customersId , orderDate , subtotal , shipping , total)
+values (1 , 213423 , '2023-05-17' ,235 , 'ffbwdff' , 34634 ),
+(2 , 213423 , '2023-05-17' ,235 , 'ffbwdff' , 34634 ),
+(3 , 213423 , '2023-05-17' ,235 , 'ffbwdff' , 34634 ),
+(4 , 213423 , '2023-05-17' ,235 , 'ffbwdff' , 34634 ),
+(5 , 213423 , '2023-05-17' ,235 , 'ffbwdff' , 34634 )
+
+
+
+
+
+
+/* 	create a table  orderitem */
+
+
+create table orderss (
+
+OrderId int primary key  , 
+book_id int , 
+Quantity int , 
+price money 
+Foreign key (orderId) references  OrderItem(orderId)
+);
+
+INSERT INTO orderss(OrderId , book_id , Quantity , price)
+VALUES(1 ,123 , 1345, 12361346 ),
+(2 ,123 , 1345, 12361346 ),
+(3 ,123 , 1345, 12361346 ),
+(4 ,123 , 1345, 12361346 );
+
+select * from orderss
+
+
+
+
+INSERT INTO BOOK (book_id , author_id , publisher_id , title , genre , type, publish_year , price , condition)
+VALUES(1, 123 ,2352135 , 'BOLO JUBAN KESRI' , 'DONT KNOW' , 'READING' , '2023-11-03' , 2351235 , 'READYONLY'),
+(2, 1283 , 2332135 ,'BOLO JUBAN KESRI' , 'DONT KNOW' , 'READING' , '2023-11-03' , 2351235 , 'READYONLY'),
+(3, 1203 ,23352135 , 'BOLO JUBAN KESRI' , 'DONT KNOW' , 'READING' , '2023-11-03' , 2351235 , 'READYONLY'),
+(4, 1263 , 235135 ,'BOLO JUBAN KESRI' , 'DONT KNOW' , 'READING' , '2023-11-03' , 2351235 , 'READYONLY')
+
+
+
+
+
+INSERT INTO authors VALUES(1 , 'AMAN' , 'GUPTA' , 1234) ,
+(2, 'AMAN' , 'GUPTA' , 1234),
+(3 , 'AMAN' , 'GUPTA' , 1234),
+(4 , 'AMAN' , 'GUPTA' , 1234)
+
+
+/* create a table and update a column , more than one column  , delete a particular column  , delete entire data */
+-- 1 time
+
+create table emm12(mp_id int primary key, 
+name varchar(100) , 
+age int 
+)
+
+insert into emm12 values(1 , 'aman' , 12);
+
+select * from emm12;
+
+-- update a single column 
+
+--update emm12 set name ='mitesh' where mp_id=1; 
+update emm12 set name = 'aman' where mp_id=1 ;
+select * from emm12;
+
+-- update more than one column 
+ --update emm12 set name = 'rahhul' , age=14 where mp_id=1 ; 
+ update emm12 set name = 'mitesh ' , age =14 where mp_id=1 ; 
+-- delete data 
+delete from emm12 where mp_id=1 ;
+
+
+-- delete entirre data 
+
+delete from emm12;
+
+-- 2 time 
+
+create table student(student_id int primary key, 
+name varchar(100) , 
+age int ,
+class varchar(50)
+)
+
+insert into student values(1 , 'aman' , 12);
+
+select * from student;
+
+-- update a single column 
+
+update student set name ='mitesh' where student_id=1; 
+
+-- update more than one column 
+update student set name = 'rahhul' , age=14 where student_id=1 ; 
+
+-- delete data 
+delete from student where student_id=1 ;
+
+-- delete entire data 
+
+delete from student;
+
+
+
+/* use top  , and precentage command */
+
+drop table emm12;
+
+create table emm12(mp_id int primary key, 
+name varchar(100) , 
+age int 
+)
+
+insert into emm12 values(1 , 'aman' , 12),
+(2 , 'rahul' , 13),
+(3 , 'varun' , 14),
+(4 , 'vibake' , 15);
+
+select * from emm12;
+
+select top 2 * from emm12 ;
+
+select top 50 percent * from emm12
+
+insert into emm12 values(1 , 'aman' , 12),
+(2 , 'aman' , 13),
+(3 , 'aman' , 14),
+(4 , 'aman' , 15);
+
+select top 2 * from emm12 ;
+select top 50 percent * from emm12
+
+
+-- now store the name in text not in varchar
+
+create table emm12(mp_id int primary key, 
+name text , 
+age int 
+)
+
+/* for diffrent names */
+
+insert into emm12 values(1 , 'aman' , 12),
+(2 , 'aman1' , 13),
+(3 , 'aman2' , 14),
+(4 , 'aman3' , 15);
+
+
+
+select top 2 * from emm12 ;
+
+select top 50 percent * from emm12
+
+
+alter table emm12
+add country text;
+
+/* for same name */
+
+insert into emm12 values(1 , 'aman' , 12 , 'india'),
+(2 , 'aman' , 13 , 'canada'),
+(3 , 'aman' , 14, 'chinda'),
+(4 , 'aman' , 15 , 'usa')
+
+select top 2 * from emm12 ;
+
+select top 50 percent * from emm12
+
+-- read the data 
+
+select * from  emm12 where name like 'aman%'
+
+--The data types text and varchar are incompatible in the equal to operator.
+select * from  emm12 where name='aman'
+
+-- it shows all the names which starts from n 
+select * from emm12 where name like 'a%'
+
+-- it shows all the names which ends in h 
+select * from emm12 where name like '%a'
+
+-- finds any values that have 'i' in any position 
+select * from  emm12 where name like '%a%'
+
+-- it shows all the names which starts from n and end in h 
+select * from  emm12 where name like 'a%n'
+
+-- it shows all the names which has secods poosition I 
+select * from emm12 where name like '_a%'
+
+-- it shows all the names which does not start from n 
+select * from emm12 where name not  like 'a%'
+
+
+
+/* i have 5 rows and i want to know the data of the 5th row 
+without knowing the id etc 
+*/
+select * from emm12 order by mp_id offset 2 rows fetch next 1 row only 
+
+
+
+/* sum count average */
+create table employee12
+(emp_id int primary key , 
+emp_name varchar(50) , 
+age int , 
+salary money )
+
+insert into employee12(emp_id , emp_name , age , salary)
+values(1 , 'aman' , 12 , 32000),
+(2 , 'aditya' , 13 , 2000) ,
+(3 , 'yoyo' , 14 , 3000)
+
+select count(emp_id) from employee12
+
+select sum(salary) from employee12
+
+select avg(salary) from employee12
+
+
+select * from employee12 where emp_id=1 or emp_id=2 
+
+select * from employee12 where emp_id in (1,2)
+
+select * from employee12 where emp_id not in (1,2)
+
+-- Tak please give me the records who has salary between 40k to 60 k 
+
+select * from employee12 where salary between 40000 and 60000
+
+select *  from employee12 where salary not between 40000 and 60000 
+
+
+/* union*/
+
+create table batch1(id int identity(1,1) primary key ,
+name varchar (20) , 
+age int 
+)
+
+create table batch2(
+id int identity(1,1) primary key , 
+name varchar(20),
+age int 
+)
+
+
+
+insert into batch1 values('aman' , 10), ('mitesh' , 12) , ('raju' , 01) , ('aman' , 10)
+insert into batch2 values('roit' , 10), ('hello' , 12) , ('hi' , 01)
+
+select * from batch1 union select * from batch2
+
+/* in only union we will not get the dublicate element */
+select name from batch1 union select name from batch2
+
+/* here we get th dublicate element as w2ell */
+select name from batch2 union all select name from batch2
+
+
+/* merge two tables with different column */
+
+
+create table batch1(id int identity(1,1) primary key ,
+name varchar (20) , 
+age int , 
+trainer varchar(50)
+)
+
+create table batch2(
+id int identity(1,1) primary key , 
+name varchar(20),
+age int 
+)
+
+insert into batch1 values('aman' , 10 , 'nitesh'), ('mitesh' , 12 , 'nitesh') , ('raju' , 01 , 'nitesh') , ('aman' , 10 , 'nitesh')
+insert into batch2 values('roit' , 10), ('hello' , 12) , ('hi' , 01)
+
+select * from batch1 outerunion  select * from batch2
+
+
+
+
+
+
+
+/*
+Problem Statement 1:
+
+Create a database that stores information about people, including their personal details, salary information, and daily attendance.
+Design tables and relationships to efficiently store and manage this data.
+
+
+
+ CREATE THE EMPLOYEE TABLE WITH SOME FOLLOEWING DETAILS 
+
+    HERE PERSON IS REFFFERED TO AS AN EMPLOYEE FOR BETTER UNDERSTANDING */
+
+CREATE TABLE EMPLOYEEee(
+EMP_ID INT PRIMARY KEY ,
+AGE INT , 
+EMP_NAME VARCHAR(50) , 
+JOINING_DATE DATE ,
+EMP_ROLE VARCHAR(50) , 
+EMAIL VARCHAR(100) , 
+PHONE_NUM BIGINT , 
+ADHAR_CARD bigint unique 
+
+)
+
+/* NOW ITS TIME TO INSERT THE DATA INTO THE EMPLOYEE TABLE  */
+
+INSERT INTO EMPLOYEEee(EMP_ID , AGE , EMP_NAME , JOINING_DATE ,EMP_ROLE , EMAIL , PHONE_NUM , ADHAR_CARD  )
+VALUES(123 , 23 , 'AMAN GUPTA'  , '2023-11-12' , 'TSE' , 'Aman.Gupta@prolifics.com' , 7031001961 , 2346264245626),
+(124 , 23 , 'RAHUL JHA'  , '2023-11-15' , 'DA' , 'rhul123.com' , 73475375761 , 23464363465626),
+(125 , 23 , 'mitesh gautam'  , '2023-11-15' , 'TSE' , 'fgnfnn.com' , 73474565461 , 23464365626),
+(126 , 23 , 'ashif ahmad'  , '2023-11-17' , 'SE' , 'rhul123.com' , 733463463461 , 2334735735757),
+(127 , 23 , 'ADDI SHARMA'  , '2023-11-18' , 'WD' , 'FDG2345.com' , 733466446461 , 23347357566867)
+
+
+SELECT * FROM EMPLOYEEee ;
+
+/* CREATE THE ATTENDENCE TABLE WITH SOME FOLLOEWING DETAILS */
+
+CREATE TABLE ATTENDENCE(
+ATTEN_ID INT PRIMARY KEY  , 
+ATTEN_AVG  DECIMAL(10,1) , 
+ATTEN_PRCENTAGE  VARCHAR(10) ,
+FOREIGN KEY (ATTEN_ID) REFERENCES EMPLOYEEee(EMP_ID)
+)
+
+SELECT * FROM ATTENDENCE;
+
+/* NOW ITS TIME TO INSERT THE DATA INTO THE ATTENDENCE TABLE  */
+
+INSERT INTO ATTENDENCE(ATTEN_ID , ATTEN_AVG , ATTEN_PRCENTAGE)
+VALUES( 123 , 9.88 , '90%'  ),
+( 124 , 8.88 , '90%'  ),
+( 125 , 8.34 , '90%'  ),
+( 126 , 9.89 , '90%'  ),
+( 127 , 7.83 , '90%'  )
+
+/* CREATE THE SALARY TABLE WITH SOME FOLLOEWING DETAILS */
+
+CREATE TABLE SALARY (
+SALARY_ID INT PRIMARY KEY , 
+AMOUNT MONEY , 
+BANK_NAME VARCHAR(100) , 
+CREDIT_DATE_TIME  DATETIME , 
+ACCOUNT_TYPE  VARCHAR(50) , 
+SALARY_MONTH VARCHAR(60),
+FOREIGN KEY (SALARY_ID) REFERENCES ATTENDENCE(ATTEN_ID)
+)
+
+
+/* NOW ITS TIME TO INSERT THE DATA INTO THE SALARY TABLE  */
+
+INSERT INTO SALARY(SALARY_ID , AMOUNT , BANK_NAME , CREDIT_DATE_TIME , ACCOUNT_TYPE , SALARY_MONTH)
+VALUES(123 , 32000 ,'BABA BANK' , '2023-11-23 12:12:12' , 'CURRENT' , 'JANUARY'),
+(124 , 32000 ,'DHABA BANK' , '2023-11-23 12:12:12' , 'CURRENT' , 'FEBRARY'),
+(125 , 32000 ,'ICICI BANK' , '2023-11-23 12:12:12' , 'CURRENT' , 'MARCH'),
+(126 , 32000 ,'AXIS BANK' , '2023-11-23 12:12:12' , 'CURRENT' , 'APRIL'),
+(127 , 32000 ,'MONEY BANK' , '2023-11-23 12:12:12' , 'CURRENT' , 'MAY')
+
+SELECT * FROM SALARY
+
+                                       /**************************************/
+
+									  
+	CREATE DATABASE Test2db		
+	use Test2db
+
+/*									  
+Problem Statement 2:
+
+Design a database that includes an employee table with columns: id, emp-code, and emp-name.
+Create a Salary table that references the Employee table using both employee code and employee name,
+allowing you to store salary information.
+
+*/
+/* CREATED A TABLE EMPLOYEE THAT HAS SOME FOLLOWING DETAILS , */
+
+CREATE TABLE Employee (
+    id INTEGER PRIMARY KEY,
+    emp_code TEXT NOT NULL,
+    emp_name TEXT NOT NULL,
+	AGE INT , 
+	JOINING_DATE DATE ,
+	EMP_ROLE VARCHAR(50) , 
+	EMAIL VARCHAR(100) , 
+	PHONE_NUM BIGINT , 
+	ADHAR_CARD bigint unique 
+);
+
+/* DATA INSERTED INTO THE EMPLOYEE TABLE */
+
+INSERT INTO Employee(id,emp_code,emp_name , AGE, JOINING_DATE ,EMP_ROLE , EMAIL , PHONE_NUM , ADHAR_CARD  )
+VALUES(123 , '5569' , 'AMAN GUPTA',  23 , '2023-11-12' , 'TSE' , 'Aman.Gupta@prolifics.com' , 7031001961 , 2346264245626),
+(124 , '5563' , 'mitesh',  23  , '2023-11-15' , 'DA' , 'rhul123.com' , 73475375761 , 23464363465626),
+(125 , '5568' , 'ROHIT',  23   , '2023-11-15' , 'TSE' , 'fgnfnn.com' , 73474565461 , 23464365626),
+(126 , '5560' , 'ADITY',  23  , '2023-11-17' , 'SE' , 'rhul123.com' , 733463463461 , 2334735735757),
+(127 , '5568' , ' ASHIF',  23  , '2023-11-18' , 'WD' , 'FDG2345.com' , 733466446461 , 23347357566867)
+
+SELECT * FROM EMPLOYEE
+
+/* SALARY TABLE CREATED FOR THR FOLLOW=WING DETAILS */
+
+
+CREATE TABLE Salary (
+    id INTEGER PRIMARY KEY,
+    emp_code TEXT NOT NULL,
+    emp_name TEXT NOT NULL,
+    salary REAL NOT NULL,
+    FOREIGN KEY (emp_code, emp_name) REFERENCES Employee(emp_code, emp_name)
+);
+/* INSERTED THE DATE FOR THE SALARY TABLE */
+
+
+INSERT INTO Salary(ID , emp_code , emp_name , salary)
+VALUES (123 , '234' , 'ROHIT SHARMA' , 329999 ) , 
+(124 , '235' , 'KAPIL DEV' , 329999 ),
+(125 , '236' , 'VIRAT KHOLI' , 329999 ),
+(126 , '237' , 'MSD' , 329999 ),
+(127 , '238' , 'SHIKHAR DHAWAN' , 329999 )
+
+
+/* task - assigment */
+
+/* You are managing an employee database.
+The database contains two tables: Employees and EmployeeContacts.
+*/
+
+
+drop table employee ;
+create table employee(
+EmployeeID int primary key , 
+FirstName varchar(20) , 
+LastName varchar(10) , 
+ Age int  ,   
+ Salary money 
+)
+insert into employee(EmployeeID,FirstName,LastName,Age,Salary)
+values (1          , 'John'      , 'Smith'    , 30  , 60000 ),
+(2 ,'Emily' ,' Johnson' , 28  , 55000  ) , 
+(3 , 'Michael','Williams' , 32  , 62000  ) , 
+(4 , 'bolt','hello' , 32  , 62000  ) , 
+(5 , 'aman','Gupta' , 32  , 62000  )
+
+
+select * from employee
+
+
+
+/* ContactID | EmployeeID | Email             | Phone        | */
+
+
+create table employeeContact (
+ContactID int primary key ,  
+EmployeeID int , 
+Email varchar (50) , 
+Phone bigint 
+foreign key (ContactID) references  employee(EmployeeID) on delete cascade 
+)
+
+insert into employeeContact(ContactID ,EmployeeID , Email , Phone )
+values(1 ,  1, 'john@example.com',  555-123-4567 ),
+(2  , 2  ,'emily@example.com' ,  555-987-6543) , 
+(3 ,  3 , 'michael@example.com', 555-555-1234) , 
+(4 ,  4 , 'dg@example.com', 555-555-1234) , 
+(5 ,  5 , 'bc@example.com', 555-555-1234) 
+
+select * from employeeContact
+
+
+--Update the salary of employee with EmployeeID 1 to 65000.
+update employee set salary = 65000 where EmployeeID=1;  
+
+--Update the age of employee with EmployeeID 2 to 29 and also increase their salary to 58000.
+
+update employee set age = 29  ,  salary = 580000 where EmployeeID=2;  
+
+--Delete the employee record with EmployeeID 3 from the Employees table.
+delete from employee where EmployeeID=3;  
+select * from employee
+
+--Delete all records from the EmployeeContacts table.
+
+delete from employee ; 
+--Explain the difference between the TRUNCATE and DELETE commands.
+
+
+--Retrieve the first 50% of employee data based on their names in ascending order.
+select top 50 percent * from employee
+
+
+--Retrieve the names of employees whose names start with 'J'.
+select * from employee where FirstName like 'j%'
+
+--Retrieve the names of employees whose names end with 'n'.
+select * from employee where lastname like '%n'
+--Retrieve the names of employees whose names contain the letter 'i' at any position.
+
+select * from employee where  LastName like '%i%';
+--Retrieve the names of employees whose names start with 'M' and end with 'l'.
+select * from employee where  LastName like 'm%l';
+
+--Retrieve the names of employees whose names have 'o' as the second character.
+
+select * from employee where  LastName like '_o%';
+--Retrieve the names of employees whose names do not start with 'J'.
+select * from employee where FirstName not like 'j%'
+
+
+/* First Task */
+
+create table customers (
+customer_id int primary key  , 
+customer_name varchar(40) , 
+contact_name text , 
+countary text
+
+)
+
+
+
+insert into customers(customer_id ,customer_name ,contact_name ,countary   )
+values ( 1, 'modi ji' , 'amit saha' , 'bharat') ,
+(2 , 'rahul gandhi ' , 'dont no' , 'india'),
+(3 , 'yogi' , 'me' , 'bharat')
+
+
+create table orders(orderid int primary key , 
+customer_id int , 
+order_name text , 
+orderDate date ,
+order_amount money 
+foreign key (orderid ) references customers(customer_id) 
+
+)
+insert into orders values
+(1, 1 , 'pen','2023-12-10' , 100),
+(2, 2 , 'pen','2023-10-16' , 200), 
+(3, 3 ,'pen', '2023-11-10' , 300)
+
+select * from orders;
+
+
+SELECT  customers.customer_id ,customers.customer_name ,orders.OrderID, orders.order_name 
+FROM Orders
+JOIN Customers
+ON Orders.customer_id=Customers.customer_id;
+
+
+/* task - give me the details of the peope how many traing we hqve conpleted */
+
+/*
+create table trainee_employee(
+trainee_id int identity(1,1) primary key  , 
+trainee_name text , 
+trainee_joining_date date ,
+)
+
+
+
+insert into trainee_employee values( 'aman' , '2023-06-15' )
+
+create table trainee_training(
+training_id int  ,
+no_of_traing int , 
+traing_tart_date date , 
+foreign key (training_id) references trainee_employee(trainee_id) 
+)
+
+
+
+
+
+
+
+create table trainee_employee1(
+trainee_id int primary key  , 
+trainee_name text , 
+trainee_joining_date date ,
+)
+
+insert into trainee_employee values(1 ,  'aman' , '2023-06-15' )
+
+create table trainee_training1(
+training_id int primary key   ,
+no_of_traing int , 
+traing_tart_date date , 
+foreign key (training_id) references trainee_employee1(trainee_id) 
+)
+*/
+
+--insert into trainee_training1(1, 3, '2023-06-20')
+
+
+
+create table trainee_employee2(
+trainee_id int identity(1,1) primary key, 
+trainee_name varchar(40), 
+
+
+);
+
+
+
+
+
+insert into trainee_employee2 values( 'aman',GETDATE() );
+
+
+create table trainee_training2(
+training_id int  , 
+no_of_traing int,
+training_course varchar(200)
+
+);
+
+insert into trainee_training2 values(1, 3, GETDATE());
+
+
+SELECT trainee_employee2.trainee_id, trainee_training2.training_id, trainee_training2.no_of_traing
+FROM trainee_employee2
+RIGHT JOIN trainee_training2 ON trainee_employee2.joininj = trainee_training2.training_id
+ORDER BY trainee_employee2.trainee_id;
+
+
+
+
+/* 
+Problem Statement: Online Store Inventory Analysis
+You are working for an online store that sells various products. The store has two main tables in their database: products and orders.
+products Table:
+Columns: product_id (unique identifier), product_name, category, price
+orders Table:
+Columns: order_id (unique identifier), product_id (references product_id in products), customer_name, order_date
+
+*/
+
+create table products(product_id int  identity(1,1) primary key , 
+product_name varchar(40) , 
+category text , 
+price money ,
+) 
+insert into products  values('table '  , 'furnature' , 1200) ,
+('chair '  , 'furnature' , 23543) ,
+( 'desk '  , 'furnature' , 3446) ,
+('bench '  , 'furnature' , 1200)
+
+create table order_done(order_id int primary key , 
+ product_id int , 
+ customer_name varchar(50) , 
+ order_date date  , 
+ foreign key (product_id) references products(product_id) 
+)
+
+insert into order_done(order_id,product_id , customer_name , order_date)
+values( 1,1, 'modi' , '2023-12-08') , (2, 2, 'jethala' , '2023-12-08');
+
+/* 
+Find out which products have been ordered by customers.
+Retrieve the product name, category, price, customer name,
+and order date for all the products that have been ordered. 
+Include only the records where there are matching orders for the products.
+
+*/
+
+/*
+
+SELECT products.product_id, order_done.order_id, products.price
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+*/
+
+
+create table staff(staff_id int primary key , 
+first_name varchar(20) , 
+last_name varchar(20 ) , 
+address_id int , 
+email varchar(50) , 
+store_id int , 
+active  varchar(50) , 
+username varchar(509) , 
+password varchar(600) , 
+last_update varchar(600) , 
+
+)
+
+
+create table payment (payment_id int primary key , 
+customer_id int , 
+staff_id int , 
+rental_id int , 
+amount money , 
+payment_date date 
+foreign key (payment_id) references  staff(staff_id)
+
+)
+create table customer( customer_id int primary key , 
+store_id int , 
+first_name varchar(300) , 
+last_name varchar(400) , 
+email varchar(200) , 
+address_id varchar(500) , 
+createdate date 
+
+foreign key (customer_id) references payment(payment_id)
+)
+
+/* INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;  */
+select  customer.customer_id , customer.first_name , customer.last_name , customer.createdate , customer.store_id ,
+payment.payment_id , payment.amount , payment.payment_date
+
+from customer
+inner join  payment on customer.customer_id=payment.payment_id ; 
+
+/* staff information with payment id and paymnt date */
+select  staff.staff_id , staff.first_name , staff.last_name , staff.address_id , staff.email , staff.active , staff.password , 
+payment.payment_id , payment.payment_date
+
+from staff
+inner join  payment on staff.staff_id=payment.payment_id ; 
+
+
+
+create table tourist(
+id int identity(1,1) primary key , 
+name varchar(200) , 
+countary varchar(200) 
+)
+
+insert into tourist values('aman' , 'india'),('rahul' , 'india') , ('mitesh' ,'thailand') , ('ashif' , 'china') , ('aditya ','japan') 
+
+
+select * from tourist
+select count(* ) from tourist where countary like 'india' 
+select count(* ) from tourist where countary like 'thailand'
+select count(* ) from tourist where countary like 'japan'
+select count(id) as countofcountary ,countary , name from tourist group by countary  
+select * from tourist 
+select count(*) as countryCount,countary from tourist group by countary having COUNT(*)>1;
+
+create table suplier1(supp_id int identity(1,1) primary key , 
+ supp_name varchar(100) , 
+ place geography 
+)
+
+create table product1(
+id int identity(1,1) primary key ,
+productname varchar(100) , 
+supp_id int , 
+price int 
+
+
+)
+
+insert into product2 values('book' , 1, 200) , ('pen ' , 1, 300)
+
+
+
+select *  into product2 from product1
+
+
+select * from product2
+
+insert into newtable(productname,sup_id , price) select productname , supplier_id
+,price from product2 where id=3 ; 
+
+
+
+/* emp_name , one table one clumn , sould be one additional column  , */
+
+
+CREATE TABLE Widget
+(
+    WidgetID int identity(1,1) not null,
+    WidgetName varchar(100) not null, 
+    WidgetDesc varchar(200) not null
+);
+
+INSERT INTO Widget VALUES 
+('thingamajig','A jig you cannot remember'),
+('doodad','A hair style you cannot remember'), 
+('whatchamacallit', 'A thing for which you cannot remember');
+SELECT * FROM Widget;
+
+/* 
+select name , 
+when name = 'nitesh' then 'it is me'
+when name= 'aman' then 'it is my brother'
+esle'dont know ' 
+end as result23423 
+from batch -- table name 
+
+*/
+
+
+CREATE TABLE BATCH(NAME VARCHAR(10) )
+
+INSERT INTO BATCH VALUES ('AMAN') , ('MITESH'), ('RAHUL ') , ('ASHIF')
+SELECT * FROM BATCH
+select name , 
+CASE
+when name = 'Mitesh' then 'it is me'
+when name= 'aman' then 'it is my brother'
+eLSE 'dont know ' 
+end as result23423 
+from batch -- table name
+
+
+/* assignment time */
+/* 
+Create two tables, Customer and Order, with appropriate columns. Perform an inner join to retrieve the following details for all ordered products:
+
+Product name
+Category
+Price
+Customer name
+Order date
+*/
+
+create table customer(customer_id int primary key  , 
+product_name varchar (10), 
+Category varchar(10) , 
+Price money , 
+Customer_name varchar(100) , 
+Orderdate date
+)
+
+
+insert into customer values(1, 'book' , 'material' , 300 , 'modiji'  , '2014-04-23') , 
+(2, 'pen' , 'material' , 150 , 'rahul gandi '  , '2014-04-24'),
+( 3,'pencil' , 'material' , 10 , 'amitsaha'  , '2014-04-21') , 
+(4, 'copies' , 'material' , 20 , 'yogiadi'  , '2014-05-23')
+
+
+/* Order
+
+*/
+
+create table orderss(OrderID int primary key , 
+CustomerID int , 
+ProductName varchar(100) , 
+Category varchar(100) , 
+price varchar(100) , 
+orderdate date 
+
+foreign key (OrderID) references customer(customer_id)
+)
+
+
+insert into orderss values ( 1 , 1 , 'pen' , 'material' , 300 , '2023-10-11'),
+( 2 , 2 , 'pencil' , 'material' , 300 , '2023-10-11'),
+( 3 , 3 , 'book' , 'material' , 300 , '2023-10-11'),
+( 4 , 4 , 'cpies' , 'material' , 300 , '2023-10-11')
+
+SELECT
+    orderss.ProductName,
+    orderss.Category,
+	orderss.Price,
+customer.Customer_name,
+orderss.OrderDate
+
+FROM orderss INNER JOIN customer  ON  orderss.CustomerID = customer.customer_id;
+
+
+/*
+BatchInfo
+*/
+create table BatchInfo(
+BatchID  int primary key , 
+ProductName varchar(100) , 
+Category varchar(100) , 
+Quantity int  , 
+BatchDate date ,
+price money 
+)
+
+
+insert into BatchInfo values(1 , 'sql' , 'database' , 32 , '2023-06-15'),
+(2 , 'java' , 'backebd' , 32 , '2023-06-15'),
+(3 , 'python' , 'language' , 32 , '2023-06-15'),
+(4 , 'angular' , 'frountend' , 32 , '2023-06-15')
+
+
+/* trainging info 
+
+*/
+
+create table TrainingInfo(
+TrainingID int primary key , 
+ProductName  varchar(100) , 
+Trainer varchar(456) , 
+TrainingDate date
+foreign key (TrainingID) references  BatchInfo(BatchID)
+)
+
+insert into TrainingInfo values(1 , 'sql' , 'nitesh' ,  '2023-06-15'),
+(2 , 'java' , 'nitin' , '2023-06-15'),
+(3 , 'python' , 'aman'  , '2023-06-15'),
+(4 , 'angular' , 'dontno'  , '2023-06-15')
+
+
+
+SELECT
+
+   
+    BatchInfo.Quantity,
+
+    BatchInfo.BatchDate,
+
+    TrainingInfo.Trainer,
+
+    TrainingInfo.TrainingDate
+
+FROM
+
+    customer 
+
+LEFT JOIN
+
+    orderss 
+
+ON
+
+    customer.customer_id = orderss.ProductName
+
+LEFT JOIN
+
+    BatchInfo 
+
+ON
+
+    customer.store_id = BatchInfo.ProductName
+
+LEFT JOIN
+
+    TrainingInfo 
+
+ON
+
+    customer.email = TrainingInfo.ProductName;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
